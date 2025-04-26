@@ -1,0 +1,14 @@
+/* src/styles/global.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Add any custom base styles or component layers here if needed */
+/* Example: Base link styling */
+/*
+@layer base {
+  a {
+    @apply text-primary hover:text-primary-hover transition-colors duration-200;
+  }
+}
+*/

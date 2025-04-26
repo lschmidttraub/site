@@ -1,0 +1,43 @@
+---
+// src/components/Projects.astro
+import ProjectCard from './ProjectCard.astro';
+
+// Example project data - Move this to a separate data file (e.g., src/config/projects.ts)
+const projects = [
+    {
+        title: "AI Image Caption Generator",
+        description: "A deep learning model (CNN+LSTM) trained to generate descriptive captions for images.",
+        imageUrl: "/images/project-placeholder-1.jpg", // Add placeholder images
+        tags: ["Python", "TensorFlow", "NLP", "Computer Vision", "Flask"],
+        githubUrl: "https://github.com/yourusername/...",
+        liveUrl: "#" // Optional
+    },
+    {
+        title: "Sentiment Analysis API",
+        description: "Developed a REST API using FastAPI to classify text sentiment (positive/negative/neutral) using a fine-tuned BERT model.",
+        imageUrl: "/images/project-placeholder-2.jpg",
+        tags: ["Python", "PyTorch", "Hugging Face", "FastAPI", "Docker"],
+        githubUrl: "https://github.com/yourusername/..."
+    },
+     {
+        title: "Predictive Maintenance Model",
+        description: "Built a machine learning model to predict equipment failure based on sensor data, using techniques like XGBoost.",
+        imageUrl: "/images/project-placeholder-3.jpg",
+        tags: ["Python", "Scikit-learn", "XGBoost", "Pandas", "MLOps"],
+        githubUrl: "https://github.com/yourusername/..."
+    }
+    // Add more projects...
+];
+---
+<section id="projects" class="py-20 md:py-28 bg-slate-800/50">
+    <div class="container mx-auto px-6">
+         <h2 class="text-3xl md:text-4xl font-bold text-center text-slate-100 mb-16 font-title">
+            Featured Projects
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+            {projects.map(project => (
+                <ProjectCard {...project} />
+            ))}
+        </div>
+    </div>
+</section>

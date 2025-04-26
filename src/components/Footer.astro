@@ -1,0 +1,10 @@
+---
+// src/components/Footer.astro
+const currentYear = new Date().getFullYear();
+---
+<footer class="bg-slate-800/50 border-t border-slate-800 mt-20">
+    <div class="container mx-auto px-6 py-6 text-center text-slate-400 text-sm">
+        <p>© {currentYear} [Your Name]. All rights reserved.</p>
+        <p class="mt-1">Built with <a href="https://astro.build/" target="_blank" rel="noopener noreferrer" class="hover:text-primary underline">Astro</a> & <a href="https://tailwindcss.com/" target="_blank" rel="noopener noreferrer" class="hover:text-primary underline">Tailwind CSS</a>.</p>
+    </div>
+</footer>

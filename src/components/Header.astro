@@ -1,0 +1,26 @@
+---
+// src/components/Header.astro
+const navItems = [
+    { href: "#about", label: "About" },
+    { href: "#skills", label: "Skills" },
+    { href: "#projects", label: "Projects" },
+    { href: "#contact", label: "Contact" },
+];
+---
+<header class="sticky top-0 z-50 backdrop-blur-md border-b border-slate-800">
+    <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+        <a href="/" class="text-xl font-bold text-slate-100 hover:text-primary transition-colors">
+            Leo Schmidt-Traub
+        </a>
+        <ul class="hidden md:flex space-x-6">
+            {navItems.map(item => (
+                <li>
+                    <a href={item.href} class="text-slate-300 hover:text-primary transition-colors font-medium">
+                        {item.label}
+                    </a>
+                </li>
+            ))}
+        </ul>
+        {/* Add Mobile Menu Button Here if needed */}
+    </nav>
+</header>
