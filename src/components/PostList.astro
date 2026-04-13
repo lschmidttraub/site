@@ -1,0 +1,35 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  posts: CollectionEntry<'posts'>[];
+  dateFormat?: 'short' | 'long';
+}
+
+const { posts, dateFormat = 'short' } = Astro.props;
+
+function fmt(d: Date) {
+  const opts: Intl.DateTimeFormatOptions =
+    dateFormat === 'long'
+      ? { year: 'numeric', month: 'short', day: 'numeric' }
+      : { year: 'numeric', month: 'short' };
+  return d.toLocaleDateString('en-US', opts).toLowerCase();
+}
+---
+<ul class="post-list">
+  {posts.map((p) => (
+    <li>
+      <a href={`/writing/${p.slug}`} class="row">
+        <span>{p.data.title}</span>
+        <span class="date">{fmt(p.data.date)}</span>
+      </a>
+    </li>
+  ))}
+</ul>
+
+<style>
+  .post-list { margin: 0; }
+  .post-list .row { border-bottom: 1px solid var(--line); }
+  .post-list a { border-bottom: 0; }
+  .post-list a:hover span:first-child { border-bottom: 1px solid var(--fg); }
+</style>
