@@ -1,0 +1,83 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import Constellation from '../components/Constellation.astro';
+import PostList from '../components/PostList.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('posts', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+const recent = posts.slice(0, 5);
+
+const projects: { name: string; blurb: string; href?: string }[] = [
+  { name: 'project one', blurb: 'a short one-liner about what it is and why.' },
+  { name: 'project two', blurb: 'a short one-liner about what it is and why.' },
+];
+
+const links = [
+  { label: 'email', href: 'mailto:you@example.com' },
+  { label: 'github', href: 'https://github.com/lschmidt-traub' },
+  { label: 'linkedin', href: 'https://www.linkedin.com/in/your-handle' },
+];
+---
+<BaseLayout title="leo schmidt-traub">
+  <Constellation />
+  <SiteHeader />
+
+  <main class="container fade-in">
+    <section class="section">
+      <h1>hi, i'm leo 👋</h1>
+      <p>
+        i'm a machine learning researcher. i care about building models that are
+        useful, honest, and a little beautiful. i sometimes write about what i'm
+        learning.
+      </p>
+      <p>
+        currently: based in [place], reading [book], building [project].
+      </p>
+    </section>
+
+    <section class="section">
+      <div class="section-label">Writing</div>
+      <PostList posts={recent} />
+      {posts.length > recent.length && (
+        <p style="margin-top:10px;"><a href="/writing">see all →</a></p>
+      )}
+    </section>
+
+    <section class="section">
+      <div class="section-label">Projects</div>
+      <ul>
+        {projects.map((p) => (
+          <li class="row">
+            <span>
+              {p.href
+                ? <a href={p.href}><strong>{p.name}</strong></a>
+                : <strong>{p.name}</strong>}
+              <span class="muted"> — {p.blurb}</span>
+            </span>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <section class="section">
+      <div class="section-label">Elsewhere</div>
+      <div class="links-row">
+        {links.map((l) => <a href={l.href}>{l.label}</a>)}
+      </div>
+    </section>
+
+    <footer class="section" style="color: var(--muted); font-size: 12px;">
+      © {new Date().getFullYear()} leo schmidt-traub
+    </footer>
+  </main>
+</BaseLayout>
+
+<style>
+  h1 { margin-bottom: 12px; }
+  p { margin-bottom: 14px; }
+  strong { font-weight: 500; }
+  .muted { color: var(--muted); }
+  .links-row { display: flex; gap: 18px; flex-wrap: wrap; }
+</style>
