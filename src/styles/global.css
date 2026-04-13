@@ -27,12 +27,12 @@ html[data-theme="dark"] {
   --accent: #7aa7ff;
 }
 html[data-theme="light"] {
-  --bg: #f7f7f5;
-  --fg: #1a1a1a;
-  --fg-rgb: 26, 26, 26;
-  --muted: rgba(var(--fg-rgb), 0.55);
-  --line: rgba(var(--fg-rgb), 0.08);
-  --accent: #3a63c4;
+  --bg: #f2ecdc;
+  --fg: #2a241c;
+  --fg-rgb: 42, 36, 28;
+  --muted: rgba(var(--fg-rgb), 0.6);
+  --line: rgba(var(--fg-rgb), 0.12);
+  --accent: #8a5a2b;
 }
 
 /* ---------- base ---------- */
