@@ -1,0 +1,35 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import Constellation from '../../components/Constellation.astro';
+import { getCollection, type CollectionEntry } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts', ({ data }) => !data.draft);
+  return posts.map((post) => ({ params: { slug: post.slug }, props: { post } }));
+}
+
+interface Props { post: CollectionEntry<'posts'>; }
+const { post } = Astro.props;
+const { Content } = await post.render();
+
+const dateStr = post.data.date.toLocaleDateString('en-US', {
+  year: 'numeric', month: 'long', day: 'numeric',
+}).toLowerCase();
+---
+<BaseLayout title={`${post.data.title} — leo schmidt-traub`} description={post.data.description}>
+  <Constellation />
+  <SiteHeader />
+
+  <main class="container fade-in">
+    <p style="margin: 8px 0 32px;"><a href="/writing">← writing</a></p>
+
+    <article class="prose">
+      <h1>{post.data.title}</h1>
+      <div class="post-date">{dateStr}</div>
+      <Content />
+    </article>
+
+    <p style="margin: 48px 0 24px;"><a href="/writing">← writing</a></p>
+  </main>
+</BaseLayout>
