@@ -1,0 +1,46 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import Constellation from '../../components/Constellation.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('posts', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+const byYear = new Map<number, typeof posts>();
+for (const p of posts) {
+  const y = p.data.date.getFullYear();
+  if (!byYear.has(y)) byYear.set(y, []);
+  byYear.get(y)!.push(p);
+}
+const years = Array.from(byYear.keys()).sort((a, b) => b - a);
+
+function fmt(d: Date) {
+  return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }).toLowerCase();
+}
+---
+<BaseLayout title="writing — leo schmidt-traub">
+  <Constellation />
+  <SiteHeader />
+
+  <main class="container fade-in">
+    <p style="margin: 8px 0 32px;"><a href="/">← home</a></p>
+    <h1 style="margin-bottom: 24px;">writing</h1>
+
+    {years.map((year) => (
+      <section class="section">
+        <div class="section-label">{year}</div>
+        <ul>
+          {byYear.get(year)!.map((p) => (
+            <li class="row">
+              <a href={`/writing/${p.slug}`} style="border-bottom:0;">{p.data.title}</a>
+              <span class="date">{fmt(p.data.date)}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))}
+
+    {posts.length === 0 && <p style="color: var(--muted);">nothing yet.</p>}
+  </main>
+</BaseLayout>
