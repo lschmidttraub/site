@@ -1,18 +1,18 @@
 ---
-title: hello, world
-description: first post — testing the pipeline.
+title: Hello, world
+description: First post — testing the pipeline.
 date: 2026-04-13
 ---
 
-this is the first post on the site. it exists mainly so the blog pipeline
-has something to render. replace or delete at will.
+This is the first post on the site. It exists mainly so the blog pipeline
+has something to render. Replace or delete at will.
 
-## why a blog
+## Why a blog
 
-i think out loud better when i write things down. occasionally what i write
+I think out loud better when I write things down. Occasionally what I write
 is useful to others — that's a bonus.
 
-## a code sample
+## A code sample
 
 ```ts
 function add(a: number, b: number): number {
@@ -20,4 +20,4 @@ function add(a: number, b: number): number {
 }
 ```
 
-more to come.
+More to come.

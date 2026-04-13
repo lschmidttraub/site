@@ -10,30 +10,29 @@ const posts = (await getCollection('posts', ({ data }) => !data.draft))
 const recent = posts.slice(0, 5);
 
 const projects: { name: string; blurb: string; href?: string }[] = [
-  { name: 'project one', blurb: 'a short one-liner about what it is and why.' },
-  { name: 'project two', blurb: 'a short one-liner about what it is and why.' },
+  { name: 'Project one', blurb: 'A short one-liner about what it is and why.' },
+  { name: 'Project two', blurb: 'A short one-liner about what it is and why.' },
 ];
 
 const links = [
-  { label: 'email', href: 'mailto:you@example.com' },
-  { label: 'github', href: 'https://github.com/lschmidt-traub' },
-  { label: 'linkedin', href: 'https://www.linkedin.com/in/your-handle' },
+  { label: 'Email', href: 'mailto:you@example.com' },
+  { label: 'GitHub', href: 'https://github.com/lschmidt-traub' },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/your-handle' },
 ];
 ---
-<BaseLayout title="leo schmidt-traub">
+<BaseLayout title="Leo Schmidt-Traub">
   <Constellation />
   <SiteHeader />
 
   <main class="container fade-in">
     <section class="section">
-      <h1>hi, i'm leo 👋</h1>
+      <h1>Hi, I'm Leo 👋</h1>
       <p>
-        i'm a machine learning researcher. i care about building models that are
-        useful, honest, and a little beautiful. i sometimes write about what i'm
-        learning.
+        I'm a machine learning researcher. I care about. I sometimes write about
+        what I'm learning.
       </p>
       <p>
-        currently: based in [place], reading [book], building [project].
+        Currently: based in [place], reading [book], building [project].
       </p>
     </section>
 
@@ -41,7 +40,7 @@ const links = [
       <div class="section-label">Writing</div>
       <PostList posts={recent} />
       {posts.length > recent.length && (
-        <p style="margin-top:10px;"><a href="/writing">see all →</a></p>
+        <p style="margin-top:10px;"><a href="/writing">See all →</a></p>
       )}
     </section>
 
@@ -69,7 +68,7 @@ const links = [
     </section>
 
     <footer class="section" style="color: var(--muted); font-size: 12px;">
-      © {new Date().getFullYear()} leo schmidt-traub
+      © {new Date().getFullYear()} Leo Schmidt-Traub
     </footer>
   </main>
 </BaseLayout>

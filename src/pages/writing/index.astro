@@ -16,16 +16,16 @@ for (const p of posts) {
 const years = Array.from(byYear.keys()).sort((a, b) => b - a);
 
 function fmt(d: Date) {
-  return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }).toLowerCase();
+  return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
 }
 ---
-<BaseLayout title="writing — leo schmidt-traub">
+<BaseLayout title="Writing — Leo Schmidt-Traub">
   <Constellation />
   <SiteHeader />
 
   <main class="container fade-in">
-    <p style="margin: 8px 0 32px;"><a href="/">← home</a></p>
-    <h1 style="margin-bottom: 24px;">writing</h1>
+    <p style="margin: 8px 0 32px;"><a href="/">← Home</a></p>
+    <h1 style="margin-bottom: 24px;">Writing</h1>
 
     {years.map((year) => (
       <section class="section">
@@ -41,6 +41,6 @@ function fmt(d: Date) {
       </section>
     ))}
 
-    {posts.length === 0 && <p style="color: var(--muted);">nothing yet.</p>}
+    {posts.length === 0 && <p style="color: var(--muted);">Nothing yet.</p>}
   </main>
 </BaseLayout>

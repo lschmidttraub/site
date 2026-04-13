@@ -15,14 +15,14 @@ const { Content } = await render(post);
 
 const dateStr = post.data.date.toLocaleDateString('en-US', {
   year: 'numeric', month: 'long', day: 'numeric',
-}).toLowerCase();
+});
 ---
-<BaseLayout title={`${post.data.title} — leo schmidt-traub`} description={post.data.description}>
+<BaseLayout title={`${post.data.title} — Leo Schmidt-Traub`} description={post.data.description}>
   <Constellation />
   <SiteHeader />
 
   <main class="container fade-in">
-    <p style="margin: 8px 0 32px;"><a href="/writing">← writing</a></p>
+    <p style="margin: 8px 0 32px;"><a href="/writing">← Writing</a></p>
 
     <article class="prose">
       <h1>{post.data.title}</h1>
@@ -30,6 +30,6 @@ const dateStr = post.data.date.toLocaleDateString('en-US', {
       <Content />
     </article>
 
-    <p style="margin: 48px 0 24px;"><a href="/writing">← writing</a></p>
+    <p style="margin: 48px 0 24px;"><a href="/writing">← Writing</a></p>
   </main>
 </BaseLayout>
