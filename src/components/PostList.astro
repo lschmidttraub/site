@@ -19,7 +19,7 @@ function fmt(d: Date) {
 <ul class="post-list">
   {posts.map((p) => (
     <li>
-      <a href={`/writing/${p.slug}`} class="row">
+      <a href={`/writing/${p.id}`} class="row">
         <span>{p.data.title}</span>
         <span class="date">{fmt(p.data.date)}</span>
       </a>

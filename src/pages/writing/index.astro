@@ -33,7 +33,7 @@ function fmt(d: Date) {
         <ul>
           {byYear.get(year)!.map((p) => (
             <li class="row">
-              <a href={`/writing/${p.slug}`} style="border-bottom:0;">{p.data.title}</a>
+              <a href={`/writing/${p.id}`} style="border-bottom:0;">{p.data.title}</a>
               <span class="date">{fmt(p.data.date)}</span>
             </li>
           ))}
