@@ -9,11 +9,6 @@ const posts = (await getCollection('posts', ({ data }) => !data.draft))
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 const recent = posts.slice(0, 5);
 
-const projects: { name: string; blurb: string; href?: string }[] = [
-  { name: 'Project one', blurb: 'A short one-liner about what it is and why.' },
-  { name: 'Project two', blurb: 'A short one-liner about what it is and why.' },
-];
-
 const links = [
   { label: 'Email', href: 'mailto:leo.schmidttraub@gmail.com' },
   { label: 'GitHub', href: 'https://github.com/lschmidttraub' },
@@ -61,22 +56,6 @@ const links = [
     </section>
 
     <section class="section">
-      <div class="section-label">Projects</div>
-      <ul>
-        {projects.map((p) => (
-          <li class="row">
-            <span>
-              {p.href
-                ? <a href={p.href}><strong>{p.name}</strong></a>
-                : <strong>{p.name}</strong>}
-              <span class="muted"> — {p.blurb}</span>
-            </span>
-          </li>
-        ))}
-      </ul>
-    </section>
-
-    <section class="section">
       <div class="section-label">Elsewhere</div>
       <div class="links-row">
         {links.map((l) => <a href={l.href}>{l.label}</a>)}
@@ -92,7 +71,5 @@ const links = [
 <style>
   h1 { margin-bottom: 12px; }
   p { margin-bottom: 14px; }
-  strong { font-weight: 500; }
-  .muted { color: var(--muted); }
   .links-row { display: flex; gap: 18px; flex-wrap: wrap; }
 </style>
