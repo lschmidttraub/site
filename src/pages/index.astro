@@ -3,49 +3,39 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import Constellation from '../components/Constellation.astro';
 import PostList from '../components/PostList.astro';
-import { getCollection } from 'astro:content';
-
-const posts = (await getCollection('posts', ({ data }) => !data.draft))
-  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+import { writing } from '../data/writing';
+const posts = [...writing].sort((a, b) => b.date.getTime() - a.date.getTime());
 const recent = posts.slice(0, 5);
-
 const links = [
   { label: 'Email', href: 'mailto:leo.schmidttraub@gmail.com' },
   { label: 'GitHub', href: 'https://github.com/lschmidttraub' },
   { label: 'LinkedIn', href: 'https://www.linkedin.com/in/leo-schmidt-traub-155158233/' },
+  { label: 'Twitter', href: 'https://x.com/leo_st73' },
 ];
 ---
 <BaseLayout title="Leo Schmidt-Traub">
   <Constellation />
   <SiteHeader />
-
   <main class="container fade-in">
     <section class="section">
-      <h1>Hi, I'm Leo 👋</h1>
+      <h1>Hi, I'm Leo</h1>
       <p>
-        I'm a machine learning researcher. I care about. I sometimes write about
-        what I'm learning.
-      </p>
-      <p>
-        Currently: based in Zürich, reading <i>Infinite Jest</i>, building [project].
+      I'm a student and machine learning researcher. I care about on-policy distillation, test-time scaling, and AI safey. 
+      I sometimes write about my opinions. I'm always looking out for exciting opportunities, so feel free to reach out!
       </p>
     </section>
-
     <section class="section">
       <div class="section-label">About</div>
       <p>
-        I grew up in Paris and am currently studying CS at ETH Zürich. 
+        I grew up in Paris and am currently studying CS at ETH Zürich, where
+        I'm a research assistant with the Learning & Adaptive Systems group
+        and a TA for <em>Introduction to Machine Learning</em>. I previously worked on neural 
+        audio codec resynthesis at the Distributed Computing group. 
       </p>
       <p>
-        My work sits at the intersection of [area A] and [area B]. I'm most
-        interested in [specific question], and I enjoy collaborating on problems
-        that span empirical and theoretical angles.
-      </p>
-      <p>
-        Outside of work: [hobby], [hobby], and long walks with a notebook.
+      Outside of work, I'm interested in politics, philosophy, vibe-coding and GPU programming.
       </p>
     </section>
-
     <section class="section">
       <div class="section-label">Writing</div>
       <PostList posts={recent} />
@@ -53,24 +43,35 @@ const links = [
         <p style="margin-top:10px;"><a href="/writing">See all →</a></p>
       )}
     </section>
-
     <section class="section">
       <div class="section-label">Contact</div>
       <p>
         I love when people reach out to me and I always respond. I'm happy to
-        chat about anything you think might interest me or just to say hi.
+        chat about anything you think might interest me or just say hi.
       </p>
+    </section>
+    <!-- <section class="section"> -->
+    <!--   <div class="section-label">Writing</div> -->
+    <!--   <PostList posts={recent} /> -->
+    <!--   {posts.length > recent.length && ( -->
+    <!--     <p style="margin-top:10px;"><a href="/writing">See all →</a></p> -->
+    <!--   )} -->
+    <!-- </section> -->
+    <!-- <section class="section"> -->
+    <!--   <div class="section-label">Contact</div> -->
+    <!--   <p> -->
+    <!--     I love when people reach out to me and I always respond. I'm happy to -->
+    <!--     chat about anything you think might interest me or just to say hi. -->
+    <!--   </p> -->
       <div class="links-row">
         {links.map((l) => <a href={l.href}>{l.label}</a>)}
       </div>
     </section>
-
     <footer class="section" style="color: var(--muted); font-size: 12px;">
       © {new Date().getFullYear()} Leo Schmidt-Traub
     </footer>
   </main>
 </BaseLayout>
-
 <style>
   h1 { margin-bottom: 12px; }
   p { margin-bottom: 14px; }

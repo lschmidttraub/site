@@ -1,8 +1,8 @@
 ---
-import type { CollectionEntry } from 'astro:content';
+import type { WritingEntry } from '../data/writing';
 
 interface Props {
-  posts: CollectionEntry<'posts'>[];
+  posts: WritingEntry[];
   dateFormat?: 'short' | 'long';
 }
 
@@ -19,9 +19,12 @@ function fmt(d: Date) {
 <ul class="post-list">
   {posts.map((p) => (
     <li>
-      <a href={`/writing/${p.id}`} class="row">
-        <span>{p.data.title}</span>
-        <span class="date">{fmt(p.data.date)}</span>
+      <a href={p.url} class="row" target="_blank" rel="noopener">
+        <span>
+          {p.title}
+          {p.venue && <span class="venue">{p.venue}</span>}
+        </span>
+        <span class="date">{fmt(p.date)}</span>
       </a>
     </li>
   ))}
@@ -32,4 +35,10 @@ function fmt(d: Date) {
   .post-list .row { border-bottom: 1px solid var(--line); }
   .post-list a { border-bottom: 0; }
   .post-list a:hover span:first-child { border-bottom: 1px solid var(--fg); }
+  .venue {
+    font-size: 12px;
+    color: var(--muted);
+    margin-left: 10px;
+    border-bottom: 0 !important;
+  }
 </style>
