@@ -4,7 +4,9 @@ import SiteHeader from '../components/SiteHeader.astro';
 import Constellation from '../components/Constellation.astro';
 import PostList from '../components/PostList.astro';
 import { writing } from '../data/writing';
+import { publications } from '../data/publications';
 const posts = [...writing].sort((a, b) => b.date.getTime() - a.date.getTime());
+const pubs = [...publications].sort((a, b) => b.date.getTime() - a.date.getTime());
 const recent = posts.slice(0, 5);
 const links = [
   { label: 'Email', href: 'mailto:leo.schmidttraub@gmail.com' },
@@ -35,6 +37,10 @@ const links = [
       <p>
       Outside of work, I'm interested in politics, philosophy, vibe-coding and GPU programming.
       </p>
+    </section>
+    <section class="section">
+      <div class="section-label">Publications</div>
+      <PostList posts={pubs} />
     </section>
     <section class="section">
       <div class="section-label">Writing</div>

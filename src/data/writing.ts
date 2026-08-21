@@ -3,6 +3,7 @@ export interface WritingEntry {
   url: string;
   date: Date;
   venue?: string;
+  authors?: string;
 }
 
 export const writing: WritingEntry[] = [
