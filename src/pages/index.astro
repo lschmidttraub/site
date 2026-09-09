@@ -10,6 +10,7 @@ const pubs = [...publications].sort((a, b) => b.date.getTime() - a.date.getTime(
 const recent = posts.slice(0, 5);
 const links = [
   { label: 'Email', href: 'mailto:leo.schmidttraub@gmail.com' },
+  { label: 'CV', href: '/cv.pdf' },
   { label: 'GitHub', href: 'https://github.com/lschmidttraub' },
   { label: 'LinkedIn', href: 'https://www.linkedin.com/in/leo-schmidt-traub-155158233/' },
   { label: 'Twitter', href: 'https://x.com/leo_st73' },
@@ -22,20 +23,22 @@ const links = [
     <section class="section">
       <h1>Hi, I'm Leo</h1>
       <p>
-      I'm a student and machine learning researcher. I care about on-policy distillation, test-time scaling, and AI safey. 
-      I sometimes write about my opinions. I'm always looking out for exciting opportunities, so feel free to reach out!
+      I'm a student and machine learning researcher. 
+      I care about making AI safe and a net positive for most people.
+      I try to write about my opinions. 
+      I'm always looking out for exciting opportunities, feel free to reach out!
       </p>
     </section>
     <section class="section">
       <div class="section-label">About</div>
       <p>
-        I grew up in Paris and am currently studying CS at ETH Zürich, where
-        I'm a research assistant with the Learning & Adaptive Systems group
-        and a TA for <em>Introduction to Machine Learning</em>. I previously worked on neural 
-        audio codec resynthesis at the Distributed Computing group. 
+        I grew up in Paris and am currently studying CS at ETH Zürich. 
+        I'm currently applying to fellowships and conducting various mech interp-related research projects.
+        Previously, I was a research assistant at the Learning & Adaptive Systems group, studying on-policy self-distillation.
+        Before that, I worked on neural audio codec resynthesis at the Distributed Computing group.
       </p>
       <p>
-      Outside of work, I'm interested in politics, philosophy, vibe-coding and GPU programming.
+      Outside of work, I'm interested in politics, miracle debates, vibe-coding and forecasting.
       </p>
     </section>
     <section class="section">
@@ -56,19 +59,6 @@ const links = [
         chat about anything you think might interest me or just say hi.
       </p>
     </section>
-    <!-- <section class="section"> -->
-    <!--   <div class="section-label">Writing</div> -->
-    <!--   <PostList posts={recent} /> -->
-    <!--   {posts.length > recent.length && ( -->
-    <!--     <p style="margin-top:10px;"><a href="/writing">See all →</a></p> -->
-    <!--   )} -->
-    <!-- </section> -->
-    <!-- <section class="section"> -->
-    <!--   <div class="section-label">Contact</div> -->
-    <!--   <p> -->
-    <!--     I love when people reach out to me and I always respond. I'm happy to -->
-    <!--     chat about anything you think might interest me or just to say hi. -->
-    <!--   </p> -->
       <div class="links-row">
         {links.map((l) => <a href={l.href}>{l.label}</a>)}
       </div>
