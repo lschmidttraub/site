@@ -1,11 +1,13 @@
 ---
-// Minimal Polyring webring link. Fallback hrefs assume this site is the last
-// member; the script below recomputes prev/next from polyring.ch's member list.
+// Minimal Polyring webring link. The prev/next arrows stay hidden until the
+// script below finds this site's hostname in polyring.ch's embed member list
+// (so they don't show on localhost).
 ---
 <nav class="polyring" aria-label="Polyring webring">
-  <a id="polyring-prev" href="https://clemenssageder.com" aria-label="Previous site in Polyring">←</a>
+  <span>This site is part of</span>
+  <a id="polyring-prev" class="arrow" hidden aria-label="Previous site in Polyring" title="Previous site">←</a>
   <a href="https://polyring.ch">Polyring</a>
-  <a id="polyring-next" href="https://xyquadrat.ch" aria-label="Next site in Polyring">→</a>
+  <a id="polyring-next" class="arrow" hidden aria-label="Next site in Polyring" title="Next site">→</a>
 </nav>
 <script is:inline>
   (function () {
@@ -18,15 +20,26 @@
         var m = MEMBERS;
         var i = m.findIndex(function (x) { return x.url.includes(location.hostname); });
         if (i < 0) return;
-        document.getElementById('polyring-prev').href = m[(i - 1 + m.length) % m.length].url;
-        document.getElementById('polyring-next').href = m[(i + 1) % m.length].url;
+        var prev = document.getElementById('polyring-prev');
+        var next = document.getElementById('polyring-next');
+        prev.href = m[(i - 1 + m.length) % m.length].url;
+        next.href = m[(i + 1) % m.length].url;
+        prev.hidden = next.hidden = false;
       } catch (_) {}
     };
     document.head.appendChild(s);
   })();
 </script>
 <style>
-  .polyring { display: inline-flex; gap: 10px; }
+  .polyring { display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; }
+  .polyring .arrow {
+    display: inline-flex;
+    font-size: 18px;
+    line-height: 1;
+    /* Inter's arrows sit below the x-height centre; nudge them up. */
+    transform: translateY(-2px);
+  }
+  .polyring .arrow[hidden] { display: none; }
   .polyring a { color: var(--muted); border-bottom: 0; }
   .polyring a:hover { color: var(--fg); }
 </style>

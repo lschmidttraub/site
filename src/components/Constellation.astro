@@ -10,6 +10,10 @@
     height: 100vh;
     z-index: -1;
     pointer-events: none;
+    /* Keep the dots out from behind the text column. */
+    --clear: 330px;
+    -webkit-mask-image: linear-gradient(to right, #000 calc(50% - var(--clear) - 120px), transparent calc(50% - var(--clear)), transparent calc(50% + var(--clear)), #000 calc(50% + var(--clear) + 120px));
+    mask-image: linear-gradient(to right, #000 calc(50% - var(--clear) - 120px), transparent calc(50% - var(--clear)), transparent calc(50% + var(--clear)), #000 calc(50% + var(--clear) + 120px));
   }
 </style>
 
@@ -75,7 +79,7 @@
           var dx = a.x - b.x, dy = a.y - b.y;
           var dist = Math.sqrt(dx * dx + dy * dy);
           if (dist < 140) {
-            var alpha = (1 - dist / 140) * 0.12;
+            var alpha = (1 - dist / 140) * 0.1;
             ctx.strokeStyle = 'rgba(' + rgb + ',' + alpha + ')';
             ctx.beginPath();
             ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y);
@@ -84,7 +88,7 @@
         }
       }
       // dots
-      ctx.fillStyle = 'rgba(' + rgb + ',0.7)';
+      ctx.fillStyle = 'rgba(' + rgb + ',0.45)';
       for (var k = 0; k < dots.length; k++) {
         var p = dots[k];
         ctx.beginPath();
