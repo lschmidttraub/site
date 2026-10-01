@@ -13,11 +13,10 @@ export const publications: Publication[] = [
     authors: 'Schmidt-Traub et al.',
   },
   {
-    title: 'On Repulsive and Attractive Teachers',
-    url: 'https://antonbaumann.com/blog/repulsive-attractive-teachers/',
-    // Only "August 2026" is given on the post; day is not published.
-    date: new Date('2026-08-01'),
-    venue: 'LAS Group',
+    title: 'On Repulsive and Attractive Teachers: Separating Correctness from Behavior in Self-Distillation',
+    url: 'https://arxiv.org/abs/2609.21561',
+    date: new Date('2026-09-18'),
+    venue: 'NeurIPS 2026 FLLMPT Workshop',
     authors: 'Baumann et al.',
   },
 ];

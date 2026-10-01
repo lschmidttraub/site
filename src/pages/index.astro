@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import Constellation from '../components/Constellation.astro';
 import PostList from '../components/PostList.astro';
+import Polyring from '../components/Polyring.astro';
 import { writing } from '../data/writing';
 import { publications } from '../data/publications';
 const posts = [...writing].sort((a, b) => b.date.getTime() - a.date.getTime());
@@ -63,8 +64,9 @@ const links = [
         {links.map((l) => <a href={l.href}>{l.label}</a>)}
       </div>
     </section>
-    <footer class="section" style="color: var(--muted); font-size: 12px;">
-      © {new Date().getFullYear()} Leo Schmidt-Traub
+    <footer class="section footer">
+      <span>© {new Date().getFullYear()} Leo Schmidt-Traub</span>
+      <Polyring />
     </footer>
   </main>
 </BaseLayout>
@@ -72,4 +74,5 @@ const links = [
   h1 { margin-bottom: 12px; }
   p { margin-bottom: 14px; }
   .links-row { display: flex; gap: 18px; flex-wrap: wrap; }
+  .footer { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; color: var(--muted); font-size: 12px; }
 </style>

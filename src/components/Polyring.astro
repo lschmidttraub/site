@@ -1,0 +1,32 @@
+---
+// Minimal Polyring webring link. Fallback hrefs assume this site is the last
+// member; the script below recomputes prev/next from polyring.ch's member list.
+---
+<nav class="polyring" aria-label="Polyring webring">
+  <a id="polyring-prev" href="https://clemenssageder.com" aria-label="Previous site in Polyring">←</a>
+  <a href="https://polyring.ch">Polyring</a>
+  <a id="polyring-next" href="https://xyquadrat.ch" aria-label="Next site in Polyring">→</a>
+</nav>
+<script is:inline>
+  (function () {
+    var s = document.createElement('script');
+    s.src = 'https://polyring.ch/embed.js';
+    s.async = true;
+    s.onload = function () {
+      try {
+        // MEMBERS is a top-level const in embed.js, shared via the global lexical scope.
+        var m = MEMBERS;
+        var i = m.findIndex(function (x) { return x.url.includes(location.hostname); });
+        if (i < 0) return;
+        document.getElementById('polyring-prev').href = m[(i - 1 + m.length) % m.length].url;
+        document.getElementById('polyring-next').href = m[(i + 1) % m.length].url;
+      } catch (_) {}
+    };
+    document.head.appendChild(s);
+  })();
+</script>
+<style>
+  .polyring { display: inline-flex; gap: 10px; }
+  .polyring a { color: var(--muted); border-bottom: 0; }
+  .polyring a:hover { color: var(--fg); }
+</style>
